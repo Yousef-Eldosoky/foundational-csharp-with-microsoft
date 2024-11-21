@@ -31,7 +31,7 @@ while (true)
     // unprocessed message:
     message = message.Substring(closingPosition + 1);
 }
-*/
+
 
 string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
 
@@ -83,3 +83,32 @@ while (true)
     int length = closingPosition - openingPosition;
     Console.WriteLine(message.Substring(openingPosition, length));
 }
+
+string message = "This--is--ex-amp-le--da-ta";
+message = message.Replace("--", " ");
+message = message.Replace("-", "");
+Console.WriteLine(message);
+*/
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+// Your work here
+int openingPosition = input.IndexOf("<span>");
+const int sizeOfSpan = 6;
+openingPosition += sizeOfSpan;
+int length = input.LastIndexOf("</span>") - openingPosition;
+quantity = input.Substring(openingPosition, length);
+quantity = $"Quantity: {quantity}";
+
+openingPosition = input.IndexOf("<div>");
+const int sizeOfDiv = 5;
+openingPosition += sizeOfDiv;
+length = input.LastIndexOf("</div>") - openingPosition;
+output = input.Substring(openingPosition, length);
+output = "Output: " + output.Replace("&trade;", "&reg;");
+
+Console.WriteLine(quantity);
+Console.WriteLine(output);
